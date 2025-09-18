@@ -1,17 +1,13 @@
 "use client";
 import CartDrawer from "./components/cart/CartDrawer";
-import CategoryFilter from "./components/category/CategoryFilter";
 import CategoryMenu from "./components/category/CategoryMenu";
-import CategorySelector from "./components/category/CategorySelector";
 import HeaderNavbar from "./components/common/HeaderNavbar";
-import HomeHeader from "./components/home/HomeHeader";
-import HomeHero from "./components/home/HomeHero";
-import HomeProductList from "./components/home/HomeProductList";
-import ProductCard, { Product } from "./components/product/ProductCard";
 import ProductList from "./components/product/ProductList";
 
 import { useState } from "react";
 import { useCart } from "./store/CartContext";
+import HomeHero from "./components/home/HomeHero";
+import { Box } from "@mui/material";
 
 export default function HomePage() {
   const [selectedCategory, setSelectedCategory] = useState<string | undefined>(undefined);
@@ -20,9 +16,14 @@ export default function HomePage() {
   return (
     <>
       <HeaderNavbar/>
-      <CartDrawer />
-      <CategoryMenu onSelect={path => setSelectedCategory(path[path.length-1]?.name?.toLowerCase())} />
-      <ProductList category={selectedCategory} onAddToCart={product => addToCart({ ...product, quantity: 1 })} />
+      {/* <CartDrawer /> */}
+      <Box display="flex" justifyContent="space-between" flexDirection={{ xs: "column", md: "row" }} sx={{ my: 4}}>
+        {/* <CategoryMenu onSelect={path => setSelectedCategory(path[path.length-1]?.name?.toLowerCase())}/> */}
+
+        {/* <HomeHero /> */}
+      </Box>
+      
+      {/* <ProductList category={selectedCategory} onAddToCart={product => addToCart({ ...product, quantity: 1 })} /> */}
     </>
   );
 }

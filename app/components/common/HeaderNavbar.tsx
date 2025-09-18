@@ -1,37 +1,27 @@
-// Reusable Header/Navbar component for e-commerce
-"use client";
 import React from "react";
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import IconButton from "@mui/material/IconButton";
-import Badge from "@mui/material/Badge";
-import CartDrawer from "../cart/CartDrawer";
-import AccountCircle from "@mui/icons-material/AccountCircle";
-import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
-import SearchBar from "./SearchBar";
+import Button from "@mui/material/Button";
+
+// Server component: static header layout
+import HeaderNavbarClient from "./HeaderNavbarClient";
 
 export default function HeaderNavbar() {
   return (
-    <AppBar position="static" color="primary" elevation={2}>
-      <Toolbar>
-        <Typography variant="h6" sx={{ flexGrow: 1 }}>
-          E-Commerce
-        </Typography>
-        <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-          <Button color="inherit">Home</Button>
-          <Button color="inherit">Shop</Button>
-          <Button color="inherit">About</Button>
-          <Button color="inherit">Contact</Button>
-          <SearchBar/>
-          <CartDrawer />
-          <IconButton color="inherit">
-            <AccountCircle />
-          </IconButton>
+    <>
+      {/* Top Bar */}
+      <Box sx={{ width: '100%', bgcolor: 'grey.100', px: 2, py: 0.5, display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: 14 }}>
+        <Box sx={{ color: 'primary.main' }}>Summer Sale! 10% Off & Free Express Delivery</Box>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+          <select style={{ padding: '2px 8px', borderRadius: 4 }}>
+            <option value="en">English</option>
+            <option value="fr">Français</option>
+          </select>
+          <Button color="primary" size="small" href="#shop">Shop</Button>
         </Box>
-      </Toolbar>
-    </AppBar>
+      </Box>
+      {/* Main Navigation (client-side interactivity) */}
+      <HeaderNavbarClient />
+    </>
   );
 }
 // After Product Card, you’ll likely want:
