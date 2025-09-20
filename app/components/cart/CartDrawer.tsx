@@ -10,6 +10,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
+import Image from "next/image";
 
 export type CartItem = {
   id: number;
@@ -50,7 +51,7 @@ export default function CartDrawer() {
             <>
               {cartItems.map(item => (
                 <Box key={item.id} display="flex" alignItems="center" mb={2}>
-                  <img src={item.image} alt={item.title} width={60} height={60} style={{ objectFit: "contain", marginRight: 12 }} />
+                  <Image src={item.image} alt={item.title} width={60} height={60} style={{ objectFit: "contain", marginRight: 12 }} />
                   <Box flex={1}>
                     <Typography variant="body1" noWrap>{item.title}</Typography>
                     <Box display="flex" alignItems="center">

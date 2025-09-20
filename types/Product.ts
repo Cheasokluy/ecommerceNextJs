@@ -3,7 +3,7 @@ export interface Product {
   id: number;
   category_id: number;
   seller_id?: number;
-  name: string;
+  title: string;
   slug: string;
   description: string;
   price: number;
@@ -12,7 +12,11 @@ export interface Product {
   status?: number;
   sale_count?: number;
   review_count?: number;
-  image: string[];
+  image: string;
+  rating: {
+    rate: number;
+    count: number;
+  };
   free_delivery?: boolean;
   delivery_fee?: number;
   in_stock?: boolean;

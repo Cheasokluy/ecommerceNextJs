@@ -1,3 +1,4 @@
+import { SelectChangeEvent } from "@mui/material/Select";
 // CategoryDropdown component with nested subcategories
 "use client";
 import React, { useEffect, useState } from "react";
@@ -20,9 +21,9 @@ export default function CategoryDropdown({ onSelect }: { onSelect?: (path: strin
       });
   }, []);
 
-  const handleChange = (event: any) => {
-    setSelected(event.target.value);
-    if (onSelect) onSelect([event.target.value]);
+  const handleChange = (event: SelectChangeEvent<string>) => {
+    setSelected(event.target.value as string);
+    if (onSelect) onSelect([event.target.value as string]);
   };
 
   return (

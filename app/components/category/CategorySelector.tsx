@@ -4,11 +4,9 @@ import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import MenuItem from "@mui/material/MenuItem";
-import Select from "@mui/material/Select";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
-import useMediaQuery from "@mui/material/useMediaQuery";
-import { useTheme } from "@mui/material/styles";
 
 export type CategoryNode = {
   id: number;
@@ -45,18 +43,19 @@ const demoCategories: CategoryNode[] = [
 ];
 
 function NestedDropdown({ categories, onSelect, path = [] }: { categories: CategoryNode[]; onSelect: (path: CategoryNode[]) => void; path?: CategoryNode[] }) {
-  const [selected, setSelected] = useState<number | "">("");
-  const selectedCategory = categories.find(cat => cat.id === selected);
+  const [selectedId, setSelectedId] = useState<string>("");
+  const selectedCategory = categories.find(cat => String(cat.id) === selectedId);
 
-  const handleChange = (event: any) => {
-    const id = event.target.value;
-    setSelected(id);
-    const nextCategory = categories.find(cat => cat.id === id);
-    if (nextCategory) {
-      if (nextCategory.subcategories) {
+  const handleChange = (event: SelectChangeEvent) => {
+    const idStr = event.target.value;
+    setSelectedId(idStr);
+    const id = Number(idStr);
+    const foundCategory = categories.find(cat => cat.id === id);
+    if (foundCategory) {
+      if (foundCategory.subcategories) {
         // Wait for subcategory selection
       } else {
-        onSelect([...path, nextCategory]);
+        onSelect([...path, foundCategory]);
       }
     }
   };
@@ -64,10 +63,9 @@ function NestedDropdown({ categories, onSelect, path = [] }: { categories: Categ
   return (
     <Box sx={{ minWidth: 180, mb: 2 }}>
       <FormControl fullWidth size="small">
-        <InputLabel>Category</InputLabel>
-        <Select value={selected} label="Category" onChange={handleChange}>
+        <Select value={selectedId} label="Category" onChange={handleChange}>
           {categories.map(cat => (
-            <MenuItem key={cat.id} value={cat.id}>{cat.name}</MenuItem>
+            <MenuItem key={cat.id} value={String(cat.id)}>{cat.name}</MenuItem>
           ))}
         </Select>
       </FormControl>
@@ -79,8 +77,8 @@ function NestedDropdown({ categories, onSelect, path = [] }: { categories: Categ
 }
 
 export default function CategorySelector({ onSelect }: { onSelect?: (path: CategoryNode[]) => void }) {
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  // Removed unused theme
+  // Removed unused isMobile
 
   // Replace demoCategories with API data when available
   const categories = demoCategories;

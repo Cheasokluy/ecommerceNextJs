@@ -1,11 +1,13 @@
 import React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-
-// Server component: static header layout
 import HeaderNavbarClient from "./HeaderNavbarClient";
 
-export default function HeaderNavbar() {
+// Server component: static header layout
+
+export default async function HeaderNavbar() {
+  // const res = await fetch("https://fakestoreapi.com/products/categories"); // removed unused
+
   return (
     <>
       {/* Top Bar */}
@@ -24,9 +26,3 @@ export default function HeaderNavbar() {
     </>
   );
 }
-// After Product Card, you’ll likely want:
-
-// Product List/Grid (uses Product Card)
-// Category/Filter Bar
-// Cart Icon/Drawer
-// Footer

@@ -5,7 +5,6 @@ import Box from "@mui/material/Box";
 import CircularProgress from "@mui/material/CircularProgress";
 import Typography from "@mui/material/Typography";
 import ProductCard, { Product } from "../product/ProductCard";
-import CartDrawer from "../cart/CartDrawer";
 
 
 export default function ProductList({ category, onAddToCart }: { category?: string; onAddToCart?: (product: Product) => void }) {
